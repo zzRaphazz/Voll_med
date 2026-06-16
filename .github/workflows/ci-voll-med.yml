@@ -40,4 +40,8 @@ jobs:
     - name: Monta a analize estatica
       env:
        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn sonar:sonar -Dsonar.projectKey=zzRaphazz_Voll_med  
+      run: >
+        mvn clear sonar:sonar
+        -Dsonar.host.url=https://sonarcloud.io 
+        -Dsonar.organization=zzraphazz  
+        -Dsonar.projectKey=zzRaphazz_Voll_med
