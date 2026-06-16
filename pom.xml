@@ -19,9 +19,9 @@
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>zzraphazz</sonar.organization>
         <sonar.projectKey>zzRaphazz_Voll_med</sonar.projectKey>
-    
-    <!-- Caminho obrigatório para o Maven achar o relatório do Jacoco -->
-    <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <!-- Caminho obrigatório para o Maven achar o relatório do Jacoco -->
+        <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.java.binaries>${project.build.directory}/classes</sonar.java.binaries>
 	</properties>
 	<dependencies>
 		<dependency>
