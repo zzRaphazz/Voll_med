@@ -26,6 +26,7 @@ jobs:
         
       - name: Roda Docker Compose
         run: docker-compose up -d
+             docker compose up -d
 
       - name: Deploy EC2 Conf
         env: 
@@ -35,7 +36,9 @@ jobs:
         run: |
            echo "$PRIVATE_KEY" > deploy_key.pem
            chmod 600 deploy_key.pem
-           docker save -o vollmed-api.tar vollmed-api_api
+           # Descobre o nome real da imagem gerada e salva no arquivo tar
+           IMAGE_NAME=$(docker images --format "{{.Repository}}" | grep api | head -n 1)
+           docker save -o vollmed-api.tar $IMAGE_NAME
            scp -o StrictHostKeyChecking -i deploy_key.pem vollmed-api.tar $USER@$HOST:/home/ubuntu/
            scp -o StrictHostKeyChecking -i deploy_key.pem init.sql $USER@$HOST:/home/ubuntu/
            scp -o StrictHostKeyChecking -i deploy_key.pem docker-composer-prod.yaml $USER@$HOST:/home/ubuntu/
