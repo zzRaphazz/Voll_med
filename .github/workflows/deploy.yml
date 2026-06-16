@@ -1,4 +1,4 @@
-name: Deploy Voll Med
+name: Deploy
 
 on:
   push:
