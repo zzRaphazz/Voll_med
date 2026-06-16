@@ -34,7 +34,10 @@ jobs:
     - name: Executa testes unitários
       run: mvn -B verify
 
-    - name: Monta a analize
+    - name: Gera relatorio Jacoco
+      run: mvn jacoco:prepare-agent verify
+      
+    - name: Monta a analize estatica
       env:
        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=zzRaphazz_Voll_med  
+      run: mvn sonar:sonar -Dsonar.projectKey=zzRaphazz_Voll_med  
