@@ -40,8 +40,8 @@ jobs:
            # Descobre o nome real da imagem gerada e salva no arquivo tar
            IMAGE_NAME=$(docker images --format "{{.Repository}}" | grep api | head -n 1)
            docker save -o vollmed-api.tar $IMAGE_NAME
-           scp -o StrictHostKeyChecking -i deploy_key.pem vollmed-api.tar $USER@$HOST:/home/ubuntu/
-           scp -o StrictHostKeyChecking -i deploy_key.pem init.sql $USER@$HOST:/home/ubuntu/
-           scp -o StrictHostKeyChecking -i deploy_key.pem docker-composer-prod.yaml $USER@$HOST:/home/ubuntu/
-           scp -o StrictHostKeyChecking -i deploy_key.pem script-deploy.sh $USER@$HOST:/home/ubuntu/
-           ssh -i deploy_key.pem $USER@$HOST "chmod +x script-deploy.sh && ./script-deploy.sh"
+           scp -o StrictHostKeyChecking=no -i deploy_key.pem vollmed-api.tar $USER@$HOST:/home/ubuntu/
+           scp -o StrictHostKeyChecking=no -i deploy_key.pem init.sql $USER@$HOST:/home/ubuntu/
+           scp -o StrictHostKeyChecking=no -i deploy_key.pem docker-composer-prod.yaml $USER@$HOST:/home/ubuntu/
+           scp -o StrictHostKeyChecking=no -i deploy_key.pem script-deploy.sh $USER@$HOST:/home/ubuntu/
+           ssh -o StrictHostKeyChecking=no -i deploy_key.pem $USER@$HOST "chmod +x script-deploy.sh && ./script-deploy.sh"
