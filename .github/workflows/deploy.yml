@@ -25,7 +25,8 @@ jobs:
           docker-compose --version    
         
       - name: Roda Docker Compose
-        run: docker-compose up -d
+        run: |
+             docker compose build
              docker compose up -d
 
       - name: Deploy EC2 Conf
